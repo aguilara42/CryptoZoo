@@ -23,6 +23,14 @@ public class Zoo {
     /*  Fills a list with new animal objects */
     static ArrayList<Animal> list = new ArrayList<Animal>();
     private static boolean vist = true;
+    public static String name;
+    public static String origin;
+    public static int danger;
+    public static int cages;
+    public static  String food;
+    public static int amt;
+    public static int type;
+    public static boolean valid = false;
 
     public static void init() {
 
@@ -42,7 +50,7 @@ public class Zoo {
         list.add(ling1);
         LingerLing ling2 = new LingerLing("Black Demon", "Pacific Ocean", 10);
         list.add(ling2);
-        FossilRelative foss1 = new FossilRelative("", "Noth America", 2);
+        FossilRelative foss1 = new FossilRelative("T-Rex", "Noth America", 2);
         list.add(foss1);
         FossilRelative foss2 = new FossilRelative("Megalodon", "Pacific Ocean", 10);
         list.add(foss2);
@@ -54,7 +62,7 @@ public class Zoo {
         for (Animal i : list) {
             i.setcage(a);
             a++;
-
+            cages = a;
         }
     }
 
@@ -70,6 +78,7 @@ public class Zoo {
         while (vist) {
             /* Prints the properties of each animal object in the zooList */
             Scanner sc = new Scanner(System.in);
+            valid = false;
             cages();
             System.out.println("1) Show all animals.");
             System.out.println("2) Show aniamls on tour.");
@@ -118,17 +127,17 @@ public class Zoo {
             if (choice == 3) {
 
                 System.out.println("What is the animals name?");
-                String name = sc.next();
+                name = sc.next();
                 System.out.println("What is the animals origin?");
-                String origin = sc.next();
-                System.out.println("What is its danger rating?");
-                int danger = sc.nextInt();
+                origin = sc.next();
+                System.out.println("What is its danger rating?");   
+                danger = sc.nextInt();
                 System.out.println("What does it eat?");
-                String food = sc.next();
+                food = sc.next();
                 System.out.println("How much does it eat?");
-                int amt = sc.nextInt();
+                amt = sc.nextInt();
                 System.out.println("is it 1.Mythical 2. Paranormal 3. Fossil 4. Linger Ling");
-                int type = sc.nextInt();
+                type = sc.nextInt();
                 if (type == 1) {
                     Mythical userAnimal = new Mythical(name, origin, danger, food, amt);
                     list.add(userAnimal);
@@ -163,7 +172,7 @@ public class Zoo {
                 while (valid != true) {
                     System.out.println("Which cage number would you like to change the tour status?");
                     cage = sc.nextInt() - 1;
-                    if (cage <= 0 || cage > list.size()) {
+                    if (cage < 0 || cage > cages) {
                         System.out.println("There is no such cage.");
                     } else {
                         valid = true;
@@ -171,11 +180,8 @@ public class Zoo {
                 }
 
                 for (Animal i : list) {
-                    
-                    System.out.println(a);
                     if (a == cage) {
                         valid = false;
-
                         while (valid != true) {
                             System.out.println("Would you like to 1. take off tour or 2. put on tour?");
                             int tour = sc.nextInt();

@@ -19,7 +19,7 @@ public abstract class Animal implements ZooAnimal {
     private String origin; //Animal's origin
     private int danger; //Animal's danger rating
     private int cage;
-    private boolean onTour = true;
+    private boolean onTour = false;
     
     /*  Animal object constructor (only to be inherited) */
     public Animal (String name, String origin, int danger){
